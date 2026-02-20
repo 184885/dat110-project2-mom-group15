@@ -113,7 +113,11 @@ public class Dispatcher extends Stopable {
 		// TODO: create the topic in the broker storage
 		// the topic is contained in the create topic message
 
-		throw new UnsupportedOperationException(TODO.method());
+		String topic = msg.getTopic();
+		storage.createTopic(topic);
+		// Does the user that creates the topic need to be subscribed to the topic on creation
+		// then:
+		// storage.addSubscriber(msg.getUser(), topic);
 
 	}
 
@@ -124,7 +128,8 @@ public class Dispatcher extends Stopable {
 		// TODO: delete the topic from the broker storage
 		// the topic is contained in the delete topic message
 		
-		throw new UnsupportedOperationException(TODO.method());
+		String topic = msg.getTopic();
+		storage.deleteTopic(topic);
 	}
 
 	public void onSubscribe(SubscribeMsg msg) {
@@ -134,7 +139,9 @@ public class Dispatcher extends Stopable {
 		// TODO: subscribe user to the topic
 		// user and topic is contained in the subscribe message
 		
-		throw new UnsupportedOperationException(TODO.method());
+		String topic = msg.getTopic();
+		String user= msg.getUser();
+		storage.addSubscriber(user, topic);
 
 	}
 
@@ -144,8 +151,11 @@ public class Dispatcher extends Stopable {
 
 		// TODO: unsubscribe user to the topic
 		// user and topic is contained in the unsubscribe message
+
+		String topic = msg.getTopic();
+		String user= msg.getUser();
+		storage.removeSubscriber(user, topic);
 		
-		throw new UnsupportedOperationException(TODO.method());
 	}
 
 	public void onPublish(PublishMsg msg) {
@@ -156,7 +166,16 @@ public class Dispatcher extends Stopable {
 		// topic and message is contained in the subscribe message
 		// messages must be sent using the corresponding client session objects
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		String topic = msg.getTopic();
+		String message = msg.getMessage();
+		Set<String>subs = storage.getSubscribers(topic);
+		storage.getSession(msg.getUser()).send(msg);
+		for(String user:subs) {
+			ClientSession session = 
+			storage.getSession(user);
+			if(session!=null) {
+				session.receive();
+			}
+		}
 	}
 }
