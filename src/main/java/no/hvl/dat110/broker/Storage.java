@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import no.hvl.dat110.common.TODO;
+import no.hvl.dat110.messages.CreateTopicMsg;
 import no.hvl.dat110.common.Logger;
 import no.hvl.dat110.messagetransport.Connection;
 
@@ -71,8 +72,13 @@ public class Storage {
 	public void createTopic(String topic) {
 
 		// TODO: create topic in the storage
-
-		throw new UnsupportedOperationException(TODO.method());
+		
+		//New key set to create new topic and subscription list for topic
+		ConcurrentHashMap.newKeySet();
+		
+		
+		CreateTopicMsg createmsg = new CreateTopicMsg(topic);
+		System.out.println(createmsg.toString());
 	
 	}
 
