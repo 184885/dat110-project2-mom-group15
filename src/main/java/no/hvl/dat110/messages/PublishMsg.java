@@ -13,11 +13,13 @@ public class PublishMsg extends Message {
 	// TODO:
 	// Implement object variables - a topic and a message is required
 	private String topic;
+	private String message;
 	// Complete the constructor, get/set-methods, and toString method
 	// as described in the project text
 	
-	public PublishMsg(String topic) {
+	public PublishMsg(String topic, String message) {
 		this.topic = topic;
+		this.message = message;
 	}
 	
 	public String getTopic(){
@@ -28,16 +30,18 @@ public class PublishMsg extends Message {
 		this.topic = topic;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " publishes topic: " + topic;
+		return super.toString() + " publishes message on topic: " + topic;
+	}
+	
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getMessage() {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		//Get the message to 
+		return this.message;
 	}
 }

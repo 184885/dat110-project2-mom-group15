@@ -6,6 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import no.hvl.dat110.common.TODO;
 import no.hvl.dat110.messages.CreateTopicMsg;
+import no.hvl.dat110.messages.DeleteTopicMsg;
+import no.hvl.dat110.messages.SubscribeMsg;
+import no.hvl.dat110.messages.UnsubscribeMsg;
 import no.hvl.dat110.common.Logger;
 import no.hvl.dat110.messagetransport.Connection;
 
@@ -74,8 +77,10 @@ public class Storage {
 		// TODO: create topic in the storage
 		
 		//New key set to create new topic and subscription list for topic
-		ConcurrentHashMap.newKeySet();
+		//ConcurrentHashMap.newKeySet();
 		
+		//subscriptions.put(topic, /*new sub set*/);
+		getTopics().add(topic);
 		
 		CreateTopicMsg createmsg = new CreateTopicMsg(topic);
 		System.out.println(createmsg.toString());
@@ -86,22 +91,34 @@ public class Storage {
 
 		// TODO: delete topic from the storage
 
-		throw new UnsupportedOperationException(TODO.method());
+		//subscriptions.remove(topic);
+		getTopics().remove(topic);
 		
+		DeleteTopicMsg deletemsg = new DeleteTopicMsg(topic);
+		System.out.println(deletemsg.toString());
 	}
 
 	public void addSubscriber(String user, String topic) {
 
 		// TODO: add the user as subscriber to the topic
 		
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.get(topic).add(user);
+		//Can also use:
+		//getSubscribers(topic).add(user);
 		
+		SubscribeMsg submsg = new SubscribeMsg(topic,user);
+		System.out.println(submsg.toString());
 	}
 
 	public void removeSubscriber(String user, String topic) {
 
 		// TODO: remove the user as subscriber to the topic
 
-		throw new UnsupportedOperationException(TODO.method());
+		subscriptions.get(topic).remove(user);
+		//Can also use:
+		//getSubscribers(topic).remove(user);
+		
+		UnsubscribeMsg unsubmsg = new UnsubscribeMsg(topic,user);
+		System.out.println(unsubmsg.toString());
 	}
 }
