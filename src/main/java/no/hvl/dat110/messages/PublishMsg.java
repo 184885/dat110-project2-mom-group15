@@ -33,7 +33,7 @@ public class PublishMsg extends Message {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " publishes message on topic: " + topic;
+		return super.toString() + " publishes message on topic: [ " + topic + " ]";
 	}
 	
 	public void setMessage(String message) {

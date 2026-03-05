@@ -28,6 +28,6 @@ public class CreateTopicMsg extends Message {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " created topic: " + topic;
+		return super.toString() + " created topic: [ " + topic + " ]";
 	}
 }

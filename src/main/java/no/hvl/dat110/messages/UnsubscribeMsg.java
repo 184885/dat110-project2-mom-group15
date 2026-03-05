@@ -35,7 +35,7 @@ public class UnsubscribeMsg extends Message {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " user " + user + " unsubscribes from topic: " + topic;
+		return super.toString() + " user [ " + user + " ] unsubscribes from topic: [ " + topic + " ]";
 	}
     
     

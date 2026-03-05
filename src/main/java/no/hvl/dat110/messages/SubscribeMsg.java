@@ -35,7 +35,7 @@ public class SubscribeMsg extends Message {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " user " + user + " subscribes to topic: " + topic;
+		return super.toString() + " user [ " + user + " ] subscribes to topic: [ " + topic + " ]";
 	}
     
     

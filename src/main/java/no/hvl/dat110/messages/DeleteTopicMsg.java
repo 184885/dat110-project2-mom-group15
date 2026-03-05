@@ -29,7 +29,7 @@ public class DeleteTopicMsg extends Message {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " deleted topic: " + topic;
+		return super.toString() + " deleted topic: [ " + topic + " ]";
 	}
     
     
