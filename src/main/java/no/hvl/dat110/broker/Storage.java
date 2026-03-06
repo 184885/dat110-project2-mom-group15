@@ -81,9 +81,6 @@ public class Storage {
 		//subscriptions.put(topic, /*new sub set*/);
 //		getTopics().add(topic);
 		subscriptions.put(topic, ConcurrentHashMap.newKeySet());
-		
-		CreateTopicMsg createmsg = new CreateTopicMsg(topic);
-		System.out.println(createmsg.toString());
 	
 	}
 
@@ -93,9 +90,6 @@ public class Storage {
 
 		//subscriptions.remove(topic);
 		getTopics().remove(topic);
-		
-		DeleteTopicMsg deletemsg = new DeleteTopicMsg(topic);
-		System.out.println(deletemsg.toString());
 	}
 
 	public void addSubscriber(String user, String topic) {
@@ -106,9 +100,7 @@ public class Storage {
 		subscriptions.get(topic).add(user);
 		//Can also use:
 		//getSubscribers(topic).add(user);
-		
-		SubscribeMsg submsg = new SubscribeMsg(topic,user);
-		System.out.println(submsg.toString());
+
 	}
 
 	public void removeSubscriber(String user, String topic) {
@@ -118,8 +110,5 @@ public class Storage {
 		subscriptions.get(topic).remove(user);
 		//Can also use:
 		//getSubscribers(topic).remove(user);
-		
-		UnsubscribeMsg unsubmsg = new UnsubscribeMsg(topic,user);
-		System.out.println(unsubmsg.toString());
 	}
 }
