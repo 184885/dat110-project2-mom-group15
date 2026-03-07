@@ -8,14 +8,14 @@ public class PublishMsg extends Message {
 
 	// TODO:
 	// Implement object variables - a topic and a message is required
-	private String user;
+//	private String user;
 	private String topic;
 	private String message;
 	// Complete the constructor, get/set-methods, and toString method
 	// as described in the project text
 	
 	public PublishMsg(String user, String topic, String message) {
-		this.user = user;
+		super(MessageType.PUBLISH,user);
 		this.topic = topic;
 		this.message = message;
 	}
@@ -28,13 +28,13 @@ public class PublishMsg extends Message {
 		this.topic = topic;
 	}
 	
-	public String getUser() {
-		return this.user;
-	}
-	
-	public void setUser(String user) {
-		this.user = user;
-	}
+//	public String getUser() {
+//		return this.user;
+//	}
+//	
+//	public void setUser(String user) {
+//		this.user = user;
+//	}
 	
 	@Override
 	public String toString() {

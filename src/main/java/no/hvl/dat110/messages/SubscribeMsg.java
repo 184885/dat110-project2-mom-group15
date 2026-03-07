@@ -7,13 +7,13 @@ public class SubscribeMsg extends Message {
 	// TODO:
 	// Implement object variables - a topic is required
     private String topic;
-    private String user;
+//    private String user;
 	// Complete the constructor, get/set-methods, and toString method
 	// as described in the project text
 		
-    public SubscribeMsg(String topic, String user) {
+    public SubscribeMsg(String user, String topic) {
+    	super(MessageType.SUBSCRIBE,user);
     	this.topic = topic;
-    	this.user = user;
     }
     
     public String getTopic() {
@@ -24,18 +24,18 @@ public class SubscribeMsg extends Message {
     	this.topic = topic;
     }
     
-    public String getUser() {
-    	return this.user;
-    }
-    
-    public void setUser(String user) {
-    	this.user = user;
-    }
+//    public String getUser() {
+//    	return this.user;
+//    }
+//    
+//    public void setUser(String user) {
+//    	this.user = user;
+//    }
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + " user [ " + user + " ] subscribes to topic: [ " + topic + " ]";
+		return super.toString() + " user [ " + getUser() + " ] subscribes to topic: [ " + topic + " ]";
 	}
     
     
