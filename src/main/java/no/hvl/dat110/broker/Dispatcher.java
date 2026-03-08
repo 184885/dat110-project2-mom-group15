@@ -92,6 +92,8 @@ public class Dispatcher extends Stopable {
 		Logger.log("onConnect:" + msg.toString());
 
 		storage.addClientSession(user, connection);
+		
+		Logger.log("Client sessions: " + storage.getSessions().size());
 	}
 
 	// called by dispatch upon receiving a disconnect message
@@ -102,6 +104,8 @@ public class Dispatcher extends Stopable {
 		Logger.log("onDisconnect:" + msg.toString());
 
 		storage.removeClientSession(user);
+		
+		Logger.log("Client sessions: " + storage.getSessions().size());
 	}
 
 	public void onCreateTopic(CreateTopicMsg msg) {
@@ -112,6 +116,8 @@ public class Dispatcher extends Stopable {
 		// the topic is contained in the create topic message
 
 		storage.createTopic(msg.getTopic());
+		
+		Logger.log("Topic: " + storage.getTopics().size());
 	}
 
 	public void onDeleteTopic(DeleteTopicMsg msg) {
@@ -122,6 +128,8 @@ public class Dispatcher extends Stopable {
 		// the topic is contained in the delete topic message
 		
 		storage.deleteTopic(msg.getTopic());
+		
+		Logger.log("Topic: " + storage.getTopics().size());
 	}
 
 	public void onSubscribe(SubscribeMsg msg) {
@@ -132,6 +140,9 @@ public class Dispatcher extends Stopable {
 		// user and topic is contained in the subscribe message
 		
 		storage.addSubscriber(msg.getUser(), msg.getTopic());
+		
+		Logger.log("Subscribers: " + storage.getTopics().stream().filter(x -> x.equals(msg.getTopic())).findFirst().get() 
+									+ ": " + storage.getTopics().stream().filter(x -> x.equals(msg.getTopic())).count());
 	}
 
 	public void onUnsubscribe(UnsubscribeMsg msg) {
@@ -142,6 +153,9 @@ public class Dispatcher extends Stopable {
 		// user and topic is contained in the unsubscribe message
 		
 		storage.removeSubscriber(msg.getUser(), msg.getTopic());
+		
+		Logger.log("Subscribers: " + storage.getTopics().stream().filter(x -> x.equals(msg.getTopic())).findFirst().get() 
+				+ ": " + storage.getTopics().stream().filter(x -> x.equals(msg.getTopic())).count());
 	}
 
 	public void onPublish(PublishMsg msg) {
@@ -153,5 +167,7 @@ public class Dispatcher extends Stopable {
 		// messages must be sent using the corresponding client session objects
 		
 		storage.getSessions().forEach(x -> x.send(msg));
+		
+		Logger.log("Message: " + msg.getMessage());
 	}
 }
