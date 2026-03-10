@@ -25,7 +25,6 @@ public class TemperatureDevice {
 		client.connect();
 		
 		for (int i = 0; i < COUNT; i++) {
-			//TODO: får connection: broken pipe error
 			String reading = "" + sn.read();
 			client.publish(Common.TEMPTOPIC, reading);
 		}
