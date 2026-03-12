@@ -15,16 +15,16 @@ public class TemperatureDevice {
 		// TODO - start
 
 		// create a client object and use it to
-
+		Client sensor = new Client("sensor", Common.BROKERHOST, Common.BROKERPORT);
+		
 		// - connect to the broker - user "sensor" as the user name
 		// - publish the temperature(s)
 		// - disconnect from the broker
-
-		Client sensor = new Client("sensor", Common.BROKERHOST, Common.BROKERPORT);
-		
 		sensor.connect();
+		
 		for(int i = 0;i<COUNT;i++)
 		sensor.publish(Common.TEMPTOPIC, sn.read()+"");
+		
 		sensor.disconnect();
 		
 		// TODO - end
